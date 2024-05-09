@@ -1,3 +1,18 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/"}]
+  "version": 2,
+  "builds": [
+    {
+      "src": "/piunivesp2024.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/piunivesp2024.py"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": "."
+  }
 }
