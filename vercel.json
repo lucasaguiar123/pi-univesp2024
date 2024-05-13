@@ -13,6 +13,6 @@
       }
     ],
     "env": {
-      "DATABASE_URL": "sqlite:///estoque.db"
+      "DATABASE_URL": "postgresql://postgres:mudar123@localhost:5432"
     }
   }
