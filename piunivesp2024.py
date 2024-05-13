@@ -41,7 +41,7 @@ def estoque():
         return render_template('estoque.html', items=items)
     except (OperationalError, Error) as e:
         print(f"Erro ao buscar itens de estoque: {e}")
-        return render_template('estoque.html', items=[])
+        return render_template('templates/estoque.html', items=[])
 
 # Rota para adicionar um novo item ao estoque
 @app.route('/adicionar_item', methods=['GET', 'POST'])
