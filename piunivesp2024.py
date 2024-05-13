@@ -30,7 +30,7 @@ def create_table():
         print(f"Erro ao criar a tabela de estoque: {e}")
 
 # Rota principal para exibir o estoque
-@app.route('/estoque',methods=['GET'])
+@app.route('/',methods=['GET'])
 def estoque():
     try:
         conn = psycopg2.connect(**DATABASE)
@@ -56,10 +56,10 @@ def adicionar_item():
             cursor.execute('INSERT INTO estoque (nome, quantidade, preco) VALUES (%s, %s, %s)', (nome, quantidade, preco))
             conn.commit()
             conn.close()
-            return redirect(url_for('estoque'))
+            return redirect(url_for('/'))
         except (OperationalError, Error) as e:
             print(f"Erro ao adicionar item ao estoque: {e}")
-            return redirect(url_for('estoque'))
+            return redirect(url_for('/'))
     return render_template('adicionar_item.html')
 
 # Rota para excluir um item do estoque
