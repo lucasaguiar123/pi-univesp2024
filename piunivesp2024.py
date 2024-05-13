@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
 import psycopg2
 from psycopg2 import OperationalError, Error
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
 # Configuração da conexão com o banco de dados PostgreSQL
 DATABASE = {
@@ -12,7 +12,7 @@ DATABASE = {
     'host': 'localhost',
     'port': '5432'
 }
-
+  
 # Função para criar a tabela de estoque no PostgreSQL
 def create_table():
     try:
@@ -29,87 +29,8 @@ def create_table():
     except (OperationalError, Error) as e:
         print(f"Erro ao criar a tabela de estoque: {e}")
 
-# HTML para a página de estoque
-html_estoque = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Estoque Pádua</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID &nbsp</th>
-                    <th>Nome &nbsp</th>
-                    <th>Quantidade &nbsp</th>
-                    <th>Preço &nbsp</th>
-                    <th>Ações &nbsp</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <td>{{ item[0] }}</td>
-                    <td>{{ item[1] }}</td>
-                    <td>{{ item[2] }}</td>
-                    <td>{{ item[3] }}</td>
-                    <td>
-                        <a href="{{ url_for('excluir_item', item_id=item[0]) }}" class="btn btn-danger">Excluir</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-        <a href="{{ url_for('adicionar_item') }}" class="btn btn-primary">Adicionar novo item</a>
-    </div>
-</body>
-</html>
-"""
-
-# HTML para a página de adicionar item
-html_adicionar = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Item</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Adicionar Item ao Estoque</h1>
-        <form action="{{ url_for('adicionar_item') }}" method="post">
-            <div class="input-field">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-            </div>
-            <div class="input-field">
-                <label for="quantidade">Quantidade:</label>
-                <input type="number" id="quantidade" name="quantidade" required>
-            </div>
-            <div class="input-field">
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01" required>
-            </div>
-            <input type="submit" value="Adicionar" class="btn btn-primary">
-        </form>
-        <br>
-        <a href="/" class="btn btn-primary">Voltar para o estoque</a>
-    </div>
-</body>
-</html>
-"""
-
 # Rota principal para exibir o estoque
-@app.route('/')
+@app.route('/estoque',methods=['GET'])
 def estoque():
     try:
         conn = psycopg2.connect(**DATABASE)
