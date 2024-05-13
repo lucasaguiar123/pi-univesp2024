@@ -1,0 +1,42 @@
+# HTML para a página de estoque
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Estoque Pádua</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID &nbsp</th>
+                    <th>Nome &nbsp</th>
+                    <th>Quantidade &nbsp</th>
+                    <th>Preço &nbsp</th>
+                    <th>Ações &nbsp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('excluir_item', item_id=item[0]) }}" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="{{ url_for('adicionar_item') }}" class="btn btn-primary">Adicionar novo item</a>
+    </div>
+</body>
+</html>
