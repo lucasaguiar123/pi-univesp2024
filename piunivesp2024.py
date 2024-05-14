@@ -47,8 +47,7 @@ def excluir_item(item_id):
         cursor = conn.cursor()
         cursor.execute('DELETE FROM estoque_padua WHERE id_produto = %s', (item_id,))
         conn.commit()
-        conn.close()
-        
+        conn.close()        
     except (OperationalError, Error) as e:
         print(f"Erro ao excluir item do estoque: {e}")
         return redirect(url_for('/estoque_padua'))
