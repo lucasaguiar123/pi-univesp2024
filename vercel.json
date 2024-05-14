@@ -1,15 +1,18 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "piunivesp2024.py",
-        "use": "@vercel/python"      
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "piunivesp2024.py"
-      }
-    ],   
-  }
+  "version": 2,
+  "functions": {
+    "api": {
+      "handler": "piunivesp2024.app",
+      "runtime": "@vercel/python"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "/api" }
+  ],
+  "builds": [
+    {
+      "src": "piunivesp2024.py",
+      "use": "@vercel/python"
+    }
+  ]
+}
