@@ -5,9 +5,7 @@
         "src": "piunivesp2024.py",
         "use": "@vercel/python"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
+    ]
+
         "dest": "piunivesp2024.py"
       }
