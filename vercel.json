@@ -3,17 +3,13 @@
     "builds": [
       {
         "src": "piunivesp2024.py",
-        "use": "@vercel/python"
-        "use": "@vercel/postgres"
+        "use": "@vercel/python"      
       }
     ],
     "routes": [
       {
-        "src": "/estoque_padua(.*)",
+        "src": "/(.*)",
         "dest": "piunivesp2024.py"
       }
-    ],
-    "env": {
-      "DATABASE_URL": "postgres://default:7Vxa6mIUDeop@ep-ancient-shape-a4mn5jxw-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
-    }
+    ],   
   }
