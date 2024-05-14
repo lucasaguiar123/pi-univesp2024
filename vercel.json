@@ -4,11 +4,12 @@
       {
         "src": "piunivesp2024.py",
         "use": "@vercel/python"
+        "use": "@vercel/postgres"
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/estoque_padua(.*)",
         "dest": "piunivesp2024.py"
       }
     ],
