@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "piunivesp2024.py",
-        "use": "@vercel/node"
+        "use": "@vercel/python"
       }
     ],
     "routes": [
