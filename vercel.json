@@ -3,7 +3,7 @@
   
    "builds": [{
      
-        "src": "projetointegrador/wsgi.py",
+        "src": "piunivesp2024.py",
      
         "use": "@vercel/python",
 
