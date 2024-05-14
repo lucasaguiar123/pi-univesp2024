@@ -1,15 +1,18 @@
 {
-  "version": 2,
-  "functions": {
-    "api": {
-      "handler": "piunivesp2024.app",
-      "runtime": "@vercel/python"
+    "version": 2,
+    "builds": [
+      {
+        "src": "piunivesp2024.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "piunivesp2024.py"
+      }
+    ],
+    "env": {
+      "DATABASE_URL": "postgres://default:7Vxa6mIUDeop@ep-ancient-shape-a4mn5jxw-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
     }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "/api" }
-  ],
-  "builds": [
-    { "src": "piunivesp2024.py", "use": "@vercel/python" }
-  ]
-}
+  }
