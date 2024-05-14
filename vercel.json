@@ -1,13 +1,18 @@
 {
   "version": 2,
-  "functions": {
-    "api": {      
-      "runtime": "@vercel/python"
-    }
-  },
+  
+   "builds": [{
+     
+        "src": "projetointegrador/wsgi.py",
+     
+        "use": "@vercel/python",
+
+   }
+   ],
  "routes": [
         {
             "src": "/(.*)",
+          
             "dest": "piunivesp2024.py"
     }
   ]
